@@ -15,7 +15,7 @@ EXPOSE 53/udp
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD drill @127.0.0.1 cloudflare.com || exit 1
+    CMD dig @127.0.0.1 cloudflare.com +short || exit 1
 
 # Run Unbound in foreground
 CMD ["unbound", "-d", "-c", "/opt/unbound/etc/unbound/unbound.conf"]
