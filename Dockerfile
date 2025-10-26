@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:3.22
 
 # Install Unbound DNS server
 RUN apk update && apk add --no-cache unbound dns-root-hints bind-tools
