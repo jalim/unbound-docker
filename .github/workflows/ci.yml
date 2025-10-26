@@ -1,25 +1,17 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
 
 jobs:
-  build-and-release:
+  test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,9 +24,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-      - name: Run semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
