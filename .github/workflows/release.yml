@@ -1,6 +1,7 @@
+---
 name: Release
 
-on:
+'on':
   push:
     branches:
       - main
@@ -34,7 +35,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install -g semantic-release @semantic-release/git @semantic-release/changelog @semantic-release/exec
+          npm install -g \
+            semantic-release \
+            @semantic-release/commit-analyzer \
+            @semantic-release/release-notes-generator \
+            @semantic-release/git \
+            @semantic-release/changelog \
+            @semantic-release/github
 
       - name: Semantic Release
         id: semantic
@@ -73,9 +80,12 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
-            type=semver,pattern={{version}},value=${{ needs.release.outputs.new_release_version }}
-            type=semver,pattern={{major}}.{{minor}},value=${{ needs.release.outputs.new_release_version }}
-            type=semver,pattern={{major}},value=${{ needs.release.outputs.new_release_version }}
+            type=semver,pattern={{version}},value=${{
+              needs.release.outputs.new_release_version }}
+            type=semver,pattern={{major}}.{{minor}},value=${{
+              needs.release.outputs.new_release_version }}
+            type=semver,pattern={{major}},value=${{
+              needs.release.outputs.new_release_version }}
             type=raw,value=latest
 
       - name: Build and push Docker image
