@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   unbound:
     image: ghcr.io/jalim/unbound-docker:latest

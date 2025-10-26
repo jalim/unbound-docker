@@ -66,8 +66,19 @@ The default configuration is located in `unbound.conf` and includes:
 - DNS resolution on port 53 (TCP/UDP)
 - DNSSEC validation enabled
 - Query caching for improved performance
-- Access control allowing all clients
+- Access control allowing all clients (⚠️ **restrict in production!**)
 - IPv4 and IPv6 support
+
+### Security Considerations
+
+⚠️ **Important**: The default configuration allows DNS queries from any IP address. For production deployments, you should restrict access to specific networks by modifying the `access-control` settings in `unbound.conf`:
+
+```conf
+# Example: Allow only specific networks
+access-control: 192.168.0.0/16 allow
+access-control: 10.0.0.0/8 allow
+access-control: 172.16.0.0/12 allow
+```
 
 ### Custom Configuration
 
