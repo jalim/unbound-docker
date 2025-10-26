@@ -9,6 +9,7 @@ A Docker container for running Unbound DNS server on Alpine Linux.
 - 🚀 Automated builds via GitHub Actions
 - 📦 Published to GitHub Container Registry
 - ✅ Built-in health checks
+- 🏗️ Multi-architecture support (amd64 and arm64)
 
 ## Quick Start
 
