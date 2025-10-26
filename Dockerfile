@@ -1,5 +1,11 @@
 FROM alpine:3.22
 
+# Platform arguments for multi-arch builds
+ARG BUILDPLATFORM
+ARG TARGETPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
+
 # Install Unbound DNS server
 RUN apk update && apk add --no-cache unbound dns-root-hints bind-tools
 
