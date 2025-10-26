@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  unbound:
+    image: ghcr.io/jalim/unbound-docker:latest
+    container_name: unbound
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "drill", "@127.0.0.1", "cloudflare.com"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
