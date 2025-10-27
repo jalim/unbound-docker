@@ -190,6 +190,24 @@ docker pull ghcr.io/jalim/unbound-docker:1
 docker pull ghcr.io/jalim/unbound-docker:latest
 ```
 
+#### Rebuilding Containers Without Version Bumps
+
+For maintenance tasks that don't require a version bump (like chore commits for dependency updates), you can manually trigger a rebuild using the **Rebuild Docker Image** workflow:
+
+1. Go to the [Actions tab](../../actions/workflows/rebuild-docker.yml) in GitHub
+2. Click on "Rebuild Docker Image" workflow
+3. Click "Run workflow"
+4. Choose options:
+   - **Default**: Rebuilds and pushes all existing version tags plus `latest`
+   - **Force latest only**: Only rebuilds and pushes the `latest` tag
+
+This is useful when:
+- Chore commits have been merged (dependency updates, CI config changes, etc.)
+- You want to rebuild the container with updated base images
+- Security patches are available in Alpine Linux base image
+
+The workflow will automatically detect the latest semantic version tag and rebuild the container with the same tags, ensuring users get the updated container when pulling.
+
 ## License
 
 This project is open source and available under the MIT License.
