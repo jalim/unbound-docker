@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.23
 
 # Platform arguments for multi-arch builds
 ARG BUILDPLATFORM
