@@ -60,7 +60,7 @@ jobs:
       - name: Extract metadata (tags, labels) - with version
         if: steps.get_tag.outputs.has_version == 'true' && inputs.force_latest_only == false
         id: meta_version
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
@@ -72,7 +72,7 @@ jobs:
       - name: Extract metadata (tags, labels) - latest only
         if: steps.get_tag.outputs.has_version == 'false' || inputs.force_latest_only == true
         id: meta_latest
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
